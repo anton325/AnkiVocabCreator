@@ -9,6 +9,8 @@ class AnkiCreator:
         self._cards = cards
         self._id = random.randint(0, 1000000000)
         self._dir_name = dir_name
+        self._output_dir = Path("output")
+        self._create_output_dir_if_necessary()
 
         self._model = genanki.Model(
             self._id,
@@ -22,6 +24,10 @@ class AnkiCreator:
                 }
             ],
         )
+    
+    def _create_output_dir_if_necessary(self) -> None:
+        if not self._output_dir.exists():
+            self._output_dir.mkdir()
     
     def _generate_deck(self) -> None:
         self.deck = genanki.Deck(self._id, self._dir_name)
@@ -37,7 +43,7 @@ class AnkiCreator:
             self.deck.add_note(note)
     
     def _export_deck(self) -> None:
-        genanki.Package(self.deck).write_to_file(Path("output",f"{self._dir_name}.apkg"))
+        genanki.Package(self.deck).write_to_file(Path(self._output_dir,f"{self._dir_name}.apkg"))
 
     def create(self):
         self._generate_deck()

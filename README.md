@@ -3,8 +3,8 @@
 This script reads markdown files from a specified directory and extracts vocabulary words formatted in a markdown table. It then automatically creates an Anki deck with translations in both directions.
 
 
-## Markdown File Format
-The script expects markdown files to contain vocabulary in the following format:
+## Expected Directory Structure and Markdown File Format
+The script expects a directory that contains markdown files and/or directories that eventually contain markdown files. The markdown files are expected to be in the following format:
 
 ```markdown
 | English  | Spanish  |
@@ -16,11 +16,12 @@ The script expects markdown files to contain vocabulary in the following format:
 ## Usage
 Edit line 7 in ```main.py``` to point towards the directory with the markdown files
 ```python
+# example directory (maybe your language list is contained in an Obsidian vault)
 path_to_md_dir = Path("User/Udo/Obsidian/Spanisch")
 ```
 
 ## Installation
-Ensure you have Python and the genanki package installed. Then, clone this repository and install dependencies if necessary:
+Ensure you have Python installed. Then, clone this repository and install dependencies:
 
 ```sh
 git clone <repository_url>
